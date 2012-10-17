@@ -24,6 +24,16 @@ int main(){
   int buffer[7];
   int count = 0;
   int i = 0;
+  int frequencyArray[128];
+  for(i = 0; i < 128; i++){
+    frequencyArray[i] = 0;
+  }
+  //populate the array
+  int x;
+  while((x = fgetc(fp)) != EOF){
+    frequencyArray[x] ++;
+  }
+  fclose(fp);
   while((x = fgetc(fp)) != EOF){
     //get the codes from the huffman tree
     printf("%c ", x);
