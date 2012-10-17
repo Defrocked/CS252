@@ -1,0 +1,19 @@
+/* second half of lab6 */
+#include <stdio.h>
+#include <stdlib.h>
+
+//prototypes
+void displayFloat(float f);
+float makeFloat(char* f);
+
+void displayFloat(float f){
+
+}
+
+float makeFLoat(char* f){
+
+}
+
+int main(){
+
+}
