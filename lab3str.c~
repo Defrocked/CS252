@@ -1,0 +1,109 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+//Structures
+typedef struct frequency {
+  int whatNumber;
+  int numOfNum;
+    
+} Histogram;
+
+//prototypes
+char* readScores(int* readIn);
+void displayScores(char* numbers, int readIn);
+int calcHistogram(Histogram* histo, char* numbers, int readIn);
+void displayHistogram(Histogram* histo, int count);
+void sortHistogram(Histogram* histo, int* count);
+
+int main(){
+  printf("starting\n");
+  Histogram* histo;
+  histo = (Histogram*)malloc(8*sizeof(Histogram)); //ask if this is right
+  int count;
+  int readIn = 0;
+  char* numbers;
+  numbers = readScores(&readIn);
+  printf("strings read in...\n");
+  // readScores(numbers, &readIn);
+  displayScores(numbers, readIn);
+  printf("before histogram\n");
+  //count = calcHistogram(histo, numbers, readIn);
+  //calcHistogram(histo, &count, numbers, readIn);
+  //displayHistogram(histo, count);
+  //sortHistogram(histo, &count);
+  //displayHistogram(histo, count);
+  free(numbers);
+  //free(histo);
+}
+
+char* readScores(int* readIn){
+  char* number = (char*)malloc(1024*sizeof(char));
+  int temp = 0;
+  while(scanf("%s", &temp) != EOF){
+    number[*readIn] = temp;
+    (*readIn)++;
+  }
+  return number;
+}
+
+void displayScores(char* numbers, int readIn){
+  printf("okay here\n");
+  int i = 0;
+  printf("okay here\n");
+  // char text [1024] = "text butts";
+  //printf("%s", text);
+   for(i = 0; i < readIn; i++){
+   printf("string %d: ", i);
+   printf("%s\n", numbers);
+  }
+}
+
+int calcHistogram(Histogram* histo, char* numbers, int readIn){
+  int tmp = 0;
+  int k = 0;
+  int count = 0;
+  
+  int l = 0;
+  for(k = 0; k < readIn; k++){
+    while(l < (count) && (histo[l].whatNumber) != numbers[k]){
+      l++;
+    }
+    if( l < count) {
+      (histo[l].numOfNum)++;
+    } else {
+      (histo[l].whatNumber) = (numbers[k]);
+      (histo[l].numOfNum) = 1;
+      (count)++;
+    }
+    l = 0;
+  }
+  return count;
+}
+
+void displayHistogram(Histogram* histo, int count){
+  printf("\n\nDisplay:\n");
+  int j = 0;
+  for(j = 0; j < count; j++){
+    printf("value %d: ", histo[j].whatNumber);
+    printf("freq %d\n",  histo[j].numOfNum);
+  }
+}
+
+void sortHistogram(Histogram* histo, int* count){
+  int n;
+  int o;
+  int tempo = 0;
+  for ( n = 0 ; n < (*count) ; n++ ){
+    for ( o = n ; o < (*count) ; o++ ){
+      if ( (histo[o].numOfNum) > (histo[n].numOfNum) ){
+	tempo = (histo[o].numOfNum);
+	(histo[o].numOfNum) = (histo[n].numOfNum);
+	(histo[n].numOfNum) = tempo ;
+	tempo = (histo[o].whatNumber);
+	(histo[o].whatNumber) = (histo[n].whatNumber);
+	(histo[n].whatNumber) = tempo ;
+      }
+    }
+  }
+}
+
