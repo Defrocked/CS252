@@ -1,0 +1,14 @@
+#include <stdio.h>
+#include <math.h>
+
+
+
+
+
+int main(){;
+  double a = 5.0;
+  double b = 2.0;
+
+  printf(" %f \n", pow(a,b));
+
+}
